@@ -24,6 +24,7 @@ public class MainActivity extends FragmentActivity {
      * Identifier for the second fragment.
      */
     public static final int FRAGMENT_TWO = 1;
+    public static final int FRAGMENT_THREE = 2;
 
     /**
      * Number of total fragments.
@@ -54,6 +55,8 @@ public class MainActivity extends FragmentActivity {
         // Create fragments.
         _fragments.add(FRAGMENT_ONE, new FirstFragment());
         _fragments.add(FRAGMENT_TWO, new SecondFragment());
+        //_fragments.add(FRAGMENT_THREE, new Thermometer());
+
 
         // Setup the fragments, defining the number of fragments, the screens and titles.
         _fragmentPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -74,6 +77,8 @@ public class MainActivity extends FragmentActivity {
                         return "Title One";
                     case FRAGMENT_TWO:
                         return "Title Two";
+                    case FRAGMENT_THREE:
+                        return "Title Three";
                     default:
                         return null;
                 }

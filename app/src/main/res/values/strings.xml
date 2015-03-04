@@ -4,6 +4,7 @@
     <string name="app_name">HomeControl2015</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="label_lightcontrol">Ljusstyrning</string>
     <color name="background">#E2E2D4</color>
 
 </resources>

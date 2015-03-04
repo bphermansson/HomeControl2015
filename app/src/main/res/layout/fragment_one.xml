@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -8,12 +8,34 @@
         android:id="@+id/photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text3"
-        android:id="@+id/textView3" />
+        android:id="@+id/txtLabelLight"
+        android:layout_width="200dp"
+        android:layout_height="26dp"
+        android:text="@string/label_lightcontrol"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+    <TextView
+        android:id="@+id/txtLabelLroom"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/txtLabelLight"
+        android:text="Vardagsrum"
+        android:textSize="14sp"
+        android:layout_marginBottom="5dp"
+        />
+    <TextView
+        android:id="@+id/txtLabelOutdoor"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_toRightOf="@+id/buttonNexaSendLroomoff"
+        android:layout_below="@id/txtLabelLight"
+        android:layout_marginBottom="5dp"
+        android:text="Trädgård"
+        android:textSize="14sp"
+        />
+
     <ImageButton
         android:id="@+id/buttonNexaSendLroomon"
         android:layout_width="wrap_content"
@@ -27,6 +49,52 @@
         android:padding="10dp"
         >
     </ImageButton>
+    <ImageButton
+        android:id="@+id/buttonNexaSendLroomoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/buttonNexaSendLroomon"
+        android:layout_below="@+id/txtLabelLroom"
+        android:layout_marginLeft="10dp"
+        android:onClick="onNexaSendLroomoff"
+        android:text="Livingroom off"
+        android:textColor="#FFF"
+        android:width="150dp"
+        android:src="@drawable/bulboff"
+        android:padding="10dp"
+        >
+    </ImageButton>
+
+    <ImageButton
+        android:id="@+id/buttonNexaSendOutdooron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtLabelOutdoor"
+        android:layout_toEndOf="@id/buttonNexaSendLroomoff"
+        android:layout_marginLeft="10dp"
+        android:onClick="onNexaSendOutdooron"
+        android:text="Outdoor on"
+        android:textColor="#FFF"
+        android:width="150dp"
+        android:src="@drawable/bulbon"
+        android:padding="10dp"
+        >
+    </ImageButton>
+    <ImageButton
+        android:id="@+id/buttonNexaSendOutdooroff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/buttonNexaSendOutdooron"
+        android:layout_below="@+id/txtLabelOutdoor"
+        android:onClick="onNexaSendOutdooroff"
+        android:text="Outdoor off"
+        android:textColor="#FFF"
+        android:width="150dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/bulboff"
+        android:padding="10dp"
+        >
+    </ImageButton>
 
 
-</LinearLayout>
+</RelativeLayout>

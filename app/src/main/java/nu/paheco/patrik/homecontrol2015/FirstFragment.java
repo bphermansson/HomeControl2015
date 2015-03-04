@@ -16,8 +16,8 @@ public class FirstFragment extends Fragment {
 
         // Create UI components here.
         View myInflatedView = inflater.inflate(R.layout.fragment_one, container,false);
-        TextView t = (TextView) myInflatedView.findViewById(R.id.textView3);
-        t.setText("FirstFragment");
+        //TextView t = (TextView) myInflatedView.findViewById(R.id.textView3);
+        //t.setText("FirstFragment");
         return myInflatedView;
     }
 
