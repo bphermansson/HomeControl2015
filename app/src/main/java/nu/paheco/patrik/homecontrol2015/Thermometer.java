@@ -28,11 +28,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
 public final class Thermometer extends View implements SensorEventListener {
+
+    View thermoview;
+    private View thermoview1;
 
     private static final String TAG = Thermometer.class.getSimpleName();
 
@@ -71,9 +76,9 @@ public final class Thermometer extends View implements SensorEventListener {
     // scale configuration
     private static final int totalNicks = 100;
     private static final float degreesPerNick = 360.0f / totalNicks;
-    private static final int centerDegree = 40; // the one in the top center (12 o'clock)
-    private static final int minDegrees = -30;
-    private static final int maxDegrees = 110;
+    private static final int centerDegree = 50; // the one in the top center (12 o'clock)
+    private static final int minDegrees = 0;
+    private static final int maxDegrees = 100;
 
     // hand dynamics -- all are angular expressed in F degrees
     private boolean handInitialized = false;
@@ -141,9 +146,12 @@ public final class Thermometer extends View implements SensorEventListener {
     }
 
     private void init() {
+        //setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         handler = new Handler();
-
+        thermoview = findViewById(R.id.thermometer);
+        thermoview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         initDrawingTools();
+        scalePaint.setLinearText(true);
     }
 
     private String getTitle() {
@@ -157,7 +165,7 @@ public final class Thermometer extends View implements SensorEventListener {
     private void attachToSensor() {
         SensorManager sensorManager = getSensorManager();
 
-        List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_TEMPERATURE);
+        List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_LIGHT);
         if (sensors.size() > 0) {
             Sensor sensor = sensors.get(0);
             sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST, handler);
@@ -355,7 +363,7 @@ public final class Thermometer extends View implements SensorEventListener {
 
     private void drawTitle(Canvas canvas) {
         String title = getTitle();
-        canvas.drawTextOnPath(title, titlePath, 0.0f,0.0f, titlePaint);
+        //canvas.drawTextOnPath(title, titlePath, 0.0f,0.0f, titlePaint);
     }
 
     private void drawLogo(Canvas canvas) {
@@ -374,7 +382,7 @@ public final class Thermometer extends View implements SensorEventListener {
         LightingColorFilter logoFilter = new LightingColorFilter(0xff338822, color);
         logoPaint.setColorFilter(logoFilter);
 
-        canvas.drawBitmap(logo, logoMatrix, logoPaint);
+        //canvas.drawBitmap(logo, logoMatrix, logoPaint);
         canvas.restore();
     }
 
@@ -382,10 +390,12 @@ public final class Thermometer extends View implements SensorEventListener {
         if (handInitialized) {
             float handAngle = degreeToAngle(handPosition);
             canvas.save(Canvas.MATRIX_SAVE_FLAG);
-            canvas.rotate(handAngle, 0.5f, 0.5f);
+
+            // Sets the hand on a value
+            canvas.rotate(1, 0.5f, 0.5f);
+            //canvas.rotate(handAngle, 0.5f, 0.5f);
             canvas.drawPath(handPath, handPaint);
             canvas.restore();
-
             canvas.drawCircle(0.5f, 0.5f, 0.01f, handScrewPaint);
         }
     }
@@ -406,7 +416,7 @@ public final class Thermometer extends View implements SensorEventListener {
         canvas.save(Canvas.MATRIX_SAVE_FLAG);
         canvas.scale(scale, scale);
 
-        drawLogo(canvas);
+        //drawLogo(canvas);
         drawHand(canvas);
 
         canvas.restore();
