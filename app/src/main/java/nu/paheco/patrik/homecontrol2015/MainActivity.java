@@ -29,7 +29,7 @@ public class MainActivity extends FragmentActivity {
     /**
      * Number of total fragments.
      */
-    public static final int FRAGMENTS = 2;
+    public static final int FRAGMENTS = 3;
 
     /**
      * The adapter definition of the fragments.
@@ -55,7 +55,7 @@ public class MainActivity extends FragmentActivity {
         // Create fragments.
         _fragments.add(FRAGMENT_ONE, new FirstFragment());
         _fragments.add(FRAGMENT_TWO, new SecondFragment());
-        //_fragments.add(FRAGMENT_THREE, new Thermometer());
+        _fragments.add(FRAGMENT_THREE, new ThirdFragment());
 
 
         // Setup the fragments, defining the number of fragments, the screens and titles.
@@ -74,7 +74,7 @@ public class MainActivity extends FragmentActivity {
             public CharSequence getPageTitle(final int position) {
                 switch (position) {
                     case FRAGMENT_ONE:
-                        return "Title One";
+                        return "Ljusstyrning";
                     case FRAGMENT_TWO:
                         return "Title Two";
                     case FRAGMENT_THREE:
@@ -92,7 +92,22 @@ public class MainActivity extends FragmentActivity {
         v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
         String getUrl = baseUrL.concat("house=C&channel=3&onoff=on");
         new SendNexa().execute(getUrl);
-
     }
+    public void onNexaSendLroomoff(View v) {
+        v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+        String getUrl = baseUrL.concat("house=C&channel=3&onoff=off");
+        new SendNexa().execute(getUrl);
+    }
+    public void onNexaSendOutdooron(View v) {
+        v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+        String getUrl = baseUrL.concat("house=P&channel=2&onoff=on");
+        new SendNexa().execute(getUrl);
+    }
+    public void onNexaSendOutdooroff(View v) {
+        v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+        String getUrl = baseUrL.concat("house=P&channel=2&onoff=off");
+        new SendNexa().execute(getUrl);
+    }
+
 
 }

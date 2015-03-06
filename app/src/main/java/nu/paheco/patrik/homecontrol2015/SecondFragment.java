@@ -16,9 +16,7 @@ public class SecondFragment extends Fragment {
 
         // Create UI components here.
 
-        View myInflatedView = inflater.inflate(R.layout.fragment_two, container,false);
-        TextView t = (TextView) myInflatedView.findViewById(R.id.textView4);
-        t.setText("Text to Display");
+        View myInflatedView = inflater.inflate(R.layout.fragment_two, container,false);;
         return myInflatedView;
     }
 
